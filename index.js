@@ -28,8 +28,19 @@ connect.then((db) => {
         })
         .exec();
     })
-    .then((dishes) => {
-        console.log(dishes);
+    .then((dish) => {
+        console.log(dish);
+
+        dish.comments.push({
+            rating: 5,
+            comment: 'I\'m getting a sinking feeling!',
+            author: 'Leonardo di Carpaccio' 
+        });
+
+        return dish.save();
+    })
+    .then((dish) => {
+        console.log(dish);
 
         return db.collection('dishes').drop();
 
